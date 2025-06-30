@@ -22,20 +22,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      
       - name: Detect languages
         id: detect
         run: |
           langs=""
           if find . -name "*.cpp" | grep -q .; then
             langs="cpp"
-          elif find . -name "*.rs" | grep -q .; then
-            langs="$langs,rust"
-          else find . -name "*.py" | grep -q .; then
-            langs="$langs,python"
+          fi
+          if find . -name "*.rs" | grep -q .; then
+            if [ -z "$langs" ]; then
+              langs="rust"
+            else
+              langs="$langs,rust"
+            fi
+          fi
+          if find . -name "*.py" | grep -q .; then
+            if [ -z "$langs" ]; then
+              langs="python"
+            else
+              langs="$langs,python"
+            fi
           fi
           echo "languages=$langs" >> $GITHUB_OUTPUT
-
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
