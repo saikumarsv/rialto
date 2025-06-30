@@ -24,10 +24,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      
+      - name: Detect languages
+        id: detect
+        run: |
+          langs="cpp"
+          if find . -name "*.rs" | grep -q .; then
+            langs="$langs,rust"
+          fi
+          echo "languages=$langs" >> $GITHUB_OUTPUT
+
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: ${{ matrix.language }}
+          languages: ${{ steps.detect.outputs.languages }}
           build-mode: none  # Explicitly disable autobuild
 
       - name: Perform CodeQL Analysis
