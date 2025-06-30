@@ -17,8 +17,6 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        language: [python, cpp, rust]  # Replace with your project's languages
 
     steps:
       - name: Checkout repository
