@@ -26,9 +26,15 @@ jobs:
       - name: Detect languages
         id: detect
         run: |
-          langs="cpp"
+          langs=""
+          if find . -name "*.cpp" | grep -q .; then
+            langs="cpp"
+          fi
           if find . -name "*.rs" | grep -q .; then
             langs="$langs,rust"
+          fi
+          if find . -name "*.py" | grep -q .; then
+            langs="$langs,python"
           fi
           echo "languages=$langs" >> $GITHUB_OUTPUT
 
