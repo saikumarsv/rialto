@@ -25,7 +25,7 @@ jobs:
       - name: Detect languages
         id: detect
         run: |
-          langs="cpp,python"
+          langs="python"
           if find . -name "*.rs" | grep -q .; then
               langs="$langs,rust"
           fi
