@@ -29,7 +29,7 @@ std::string getSessionServerPath()
     const char *kCustomPath = getenv("RIALTO_SESSION_SERVER_PATH");
     if (kCustomPath)
     {
-        fprintf(stderr, "Using custom SessionServer path: %s", kCustomPath);
+        fprintf(stderr, "Using custom SessionServer path: %s");
         return std::string(kCustomPath);
     }
     return "/usr/bin/RialtoServer";

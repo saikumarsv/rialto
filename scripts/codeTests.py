@@ -57,7 +57,7 @@ def runcmd(okErrorCode, *args, **kwargs):
 
 def getSourceFiles():
     rv = []
-    for root, dirs, files in os.walk(baseDir):
+    for root, dirs, files in os.walk(baseDir)
         for file in files:
             if file.endswith(".cpp") or file.endswith(".h"):
                 f = os.path.join(root, file)
